@@ -6,7 +6,7 @@ import java.math.*;
  *numerator       - 分子
  *denominator     - 分母
 */
-public class RationalNumber
+public strictfp class RationalNumber
 {
 	//静态变量-0&1&10
 	public static RationalNumber ZERO = new RationalNumber(0,1);
@@ -106,5 +106,19 @@ public class RationalNumber
 	public BigInteger getNumerator()
 	{
 		return this.numerator;
+	}
+	public BigDecimal BigDecimalValue(int input)
+	{
+		BigDecimal t1 = new BigDecimal(this.numerator);
+		BigDecimal t2 = new BigDecimal(this.denominator);
+		try
+		{
+			return t1 = t1.divide(t2,input,BigDecimal.ROUND_DOWN);
+		}
+		catch(Exception e)
+		{
+			MathContext mc = new MathContext(input, RoundingMode.DOWN);
+			return t1.divide(t2,mc);
+		}
 	}
 }
